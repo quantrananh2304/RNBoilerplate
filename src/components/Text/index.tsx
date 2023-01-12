@@ -23,6 +23,7 @@ export default function Text(props: TextPropType) {
     ellipsizeMode,
     selectable,
   } = props;
+
   return (
     <TextNative
       style={[

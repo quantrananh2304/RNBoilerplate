@@ -1,5 +1,6 @@
 import { LayoutChangeEvent, TextStyle, ViewStyle } from 'react-native';
 import { ScreenNavigationProps } from './navigation';
+import { Source } from 'react-native-fast-image';
 
 export type TextColorType =
   | 'black'
@@ -39,3 +40,9 @@ export type BackNavPropType = {
   style?: ViewStyle;
   onPress?: () => void;
 } & ScreenNavigationProps;
+
+export type NoDataPropType = {
+  title: string;
+  icon?: Source;
+  titleColor?: TextColorType;
+};

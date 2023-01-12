@@ -2,16 +2,21 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import rootReducer from './reducer/rootReducer';
 import createSagaMiddleware from '@redux-saga/core';
-import { applyMiddleware, createStore } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import rootSaga from '~/saga';
+import {
+  TypedUseSelectorHook,
+  useDispatch as useAppDispatch,
+  useSelector as useAppSelector,
+} from 'react-redux';
+import { RootState } from '~/types/reduxs';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
 };
 
-export const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
   reducer: persistReducer(persistConfig, rootReducer),
@@ -19,6 +24,7 @@ const store = configureStore({
     ...getDefaultMiddleware({
       serializableCheck: false,
       immutableCheck: false,
+      thunk: false,
     }),
     sagaMiddleware,
   ],
@@ -27,5 +33,11 @@ const store = configureStore({
 sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
+
+export const { dispatch } = store;
+
+export const useDispatch = () => useAppDispatch<typeof store.dispatch | any>();
+
+export const useSelector: TypedUseSelectorHook<RootState> = useAppSelector;
 
 export default store;

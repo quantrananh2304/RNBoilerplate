@@ -2,7 +2,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { screenOption } from '../configs/routerStyles';
 import { Screen } from '~/types/navigation';
-import { SettingScreen, UserProfile } from '~/screens';
+import {
+  SettingScreen,
+  UserProfile,
+  FakeStoreApiScreen,
+  AddProduct,
+  Products,
+} from '~/screens';
 import { BackNav } from '~/components';
 
 const Stack = createNativeStackNavigator();
@@ -22,12 +28,52 @@ export default function StackNoBottomBar() {
           };
         }}
       />
+
       <Stack.Screen
         name={Screen.UserProfile}
         component={UserProfile}
         options={({ navigation }) => {
           return {
             title: 'User Profile',
+            headerLeft: () => {
+              return <BackNav navigation={navigation} />;
+            },
+          };
+        }}
+      />
+
+      <Stack.Screen
+        name={Screen.FakeStoreApi}
+        component={FakeStoreApiScreen}
+        options={({ navigation }) => {
+          return {
+            title: 'Fake Store Api',
+            headerLeft: () => {
+              return <BackNav navigation={navigation} />;
+            },
+          };
+        }}
+      />
+
+      <Stack.Screen
+        name={Screen.FakeStoreApi_AddProduct}
+        component={AddProduct}
+        options={({ navigation }) => {
+          return {
+            title: 'Add Product',
+            headerLeft: () => {
+              return <BackNav navigation={navigation} />;
+            },
+          };
+        }}
+      />
+
+      <Stack.Screen
+        name={Screen.FakeStoreApi_Products}
+        component={Products}
+        options={({ navigation }) => {
+          return {
+            title: 'Products',
             headerLeft: () => {
               return <BackNav navigation={navigation} />;
             },

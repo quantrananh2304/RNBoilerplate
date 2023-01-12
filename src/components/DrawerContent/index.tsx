@@ -67,7 +67,17 @@ export default function DrawerContent({
       </View>
 
       <Row
-        label="Cài đặt"
+        label="Fake Store Api"
+        icon={Images.icons.settingOutline}
+        onPress={() =>
+          navigation.navigate(NavigatorScreen.NoBottomBar, {
+            screen: Screen.FakeStoreApi,
+          })
+        }
+      />
+
+      <Row
+        label="Settings"
         icon={Images.icons.settingOutline}
         onPress={() =>
           navigation.navigate(NavigatorScreen.NoBottomBar, {

@@ -1,21 +1,19 @@
 import { Button } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
 import { Text } from '~/components';
-import { RootState } from '~/types/reduxs';
-import CounterActions from '~/reduxs/reducer/counter';
+import { RESETTABLE_REDUCER, RootState } from '~/types/reduxs';
+import CounterActions from '~/reduxs/reducer/counterReducer';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { dispatch, useSelector } from '~/reduxs';
 
 export default function CounterScreen() {
   const counter = useSelector((state: RootState) => state.counter.counter);
-
-  const dispatch = useDispatch();
 
   const handlePressIncrement = () => {
     dispatch(CounterActions.increment());
   };
 
   const handlePressReset = () => {
-    dispatch(CounterActions.reset());
+    dispatch({ type: RESETTABLE_REDUCER.COUNTER_RESET });
   };
 
   return (

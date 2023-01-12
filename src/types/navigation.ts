@@ -1,4 +1,4 @@
-import { ParamListBase } from '@react-navigation/native';
+import { ParamListBase, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export enum NavigatorScreen {
@@ -8,7 +8,6 @@ export enum NavigatorScreen {
 
 export enum DrawerNavigatorScreen {
   Home = 'HomeDrawer',
-  Counter = 'CounterDrawer',
 }
 
 export enum Screen {
@@ -16,10 +15,15 @@ export enum Screen {
   UserProfile = 'UserProfile',
   Settings = 'Settings',
   Counter = 'Counter',
+  FakeStoreApi = 'FakeStoreApi',
+  FakeStoreApi_Products = 'FakeStoreApi_Products',
+  FakeStoreApi_AddProduct = 'FakeStoreApi_AddProduct',
 }
 
 type ScreenRouteProps = {
   [Screen.Settings]: undefined;
+  [Screen.FakeStoreApi_AddProduct]: undefined;
+  [Screen.FakeStoreApi_Products]: { category: string };
 };
 
 export type ScreenNavigationProps<
@@ -27,4 +31,11 @@ export type ScreenNavigationProps<
   ScreenProps extends ParamListBase = ScreenRouteProps,
 > = {
   navigation: NativeStackNavigationProp<ScreenProps, TScreen>;
+};
+
+export type ScreenPropsWithRoute<
+  TScreen extends keyof ScreenProps = any,
+  ScreenProps extends ParamListBase = ScreenRouteProps,
+> = {
+  route: RouteProp<ScreenProps, TScreen>;
 };

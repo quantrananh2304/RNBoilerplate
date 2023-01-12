@@ -1,5 +1,6 @@
 import { all, fork } from 'redux-saga/effects';
+import watchFakeStoreApiSaga from './fakestoreapisaga';
 
-function* rootSaga() {}
-
-export default rootSaga;
+export default function* rootSaga() {
+  yield all([fork(watchFakeStoreApiSaga)]);
+}
