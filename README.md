@@ -8,4 +8,4 @@ arch -x86_64 bundle exec pod install
 ```
 ### Note
 > For ios, open ***ios/RNBoilerplate.xcworkspace*** folder with ***Xcode***
-> For android, open ***android*** folder with ***Android Studio***
+For android, open ***android*** folder with ***Android Studio***
