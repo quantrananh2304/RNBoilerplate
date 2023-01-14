@@ -17,14 +17,18 @@ export type FakeStoreApiState = {
   categories: Array<String> | any;
 };
 
-export type FakeStoreApiAction = AnyAction;
+export interface FetchAllProductsPayload extends AnyAction {
+  products: Array<Product> | any;
+}
+
+export type FakeStoreApiAction = AnyAction | FetchAllProductsPayload;
 
 export interface FakeStoreApiActionCreators extends DefaultActionCreators {
   fetchAllCategories: () => any;
   fetchAllCategoriesSuccess: (categories: Array<string>) => any;
   fetchAllCategoriesFailure: () => any;
 
-  fetchAllProducts: () => any;
+  fetchAllProducts: (payload: { category: string }) => FetchAllProductsPayload;
   fetchAllProductsSuccess: (
     product: Array<Product>,
     totalProducts: number,

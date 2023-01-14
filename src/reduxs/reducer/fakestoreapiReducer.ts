@@ -36,7 +36,7 @@ const { Types, Creators } = createActions<
   fetchAllCategoriesSuccess: ['categories'],
   fetchAllCategoriesFailure: [],
 
-  fetchAllProducts: [],
+  fetchAllProducts: ['payload'],
   fetchAllProductsSuccess: ['products', 'totalProducts'],
   fetchAllProductsFailure: [],
 });
@@ -74,7 +74,7 @@ const fetchAllCategoriesFailure: BodyAction<any, FakeStoreApiState> = (
   };
 };
 
-const fetchAllProducts: BodyAction<{}, FakeStoreApiState> = (
+const fetchAllProducts: BodyAction<{ category: string }, FakeStoreApiState> = (
   state,
 ): FakeStoreApiState => {
   return {

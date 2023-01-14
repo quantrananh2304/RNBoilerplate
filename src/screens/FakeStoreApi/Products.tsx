@@ -2,14 +2,12 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, RefreshControl, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { NoData, Text } from '~/components';
+import { Loading, NoData, Text } from '~/components';
 import { Colors, Metrics } from '~/themes';
 import { RootState } from '~/types/reduxs';
 import ProductRow from './components/ProductRow';
 import { useFocusEffect } from '@react-navigation/native';
-import FakeStoreApiActions, {
-  FakeStoreApiTypes,
-} from '~/reduxs/reducer/fakestoreapiReducer';
+import FakeStoreApiActions from '~/reduxs/reducer/fakestoreapiReducer';
 import { ProductRowType } from '~/types/screens/fakeStoreApi';
 import {
   Screen,
@@ -25,7 +23,9 @@ export default function Products({
 
   const { category } = route.params;
 
-  const { products } = useSelector((state: RootState) => state.fakeStoreApi);
+  const { products, fetching } = useSelector(
+    (state: RootState) => state.fakeStoreApi,
+  );
 
   const dispatch = useDispatch();
 
@@ -34,10 +34,7 @@ export default function Products({
   };
 
   function onRefresh() {
-    dispatch({
-      type: FakeStoreApiTypes.FETCH_ALL_PRODUCTS,
-      payload: { category },
-    });
+    dispatch(FakeStoreApiActions.fetchAllProducts({ category }));
   }
 
   useFocusEffect(
@@ -54,6 +51,8 @@ export default function Products({
         padding: 10,
       }}
     >
+      <Loading visible={fetching} />
+
       <FlatList
         data={products}
         keyExtractor={(item) => item.id}

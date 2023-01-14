@@ -32,7 +32,7 @@ export default Creators;
 const increment: BodyAction = (state) => {
   return {
     ...state,
-    counter: ++state.counter,
+    counter: state.counter + 1,
   };
 };
 

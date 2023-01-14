@@ -21,7 +21,7 @@ function* fetchAllProducts(effect: Effect<string, { category: string }>): any {
 }
 
 function* fetchAllCategories(): any {
-  const response: any = yield api.fakeStoreApi.fetchAllCategories;
+  const response: any = yield api.fakeStoreApi.fetchAllCategories();
 
   if (response.status === 200) {
     const { data } = response;

@@ -8,6 +8,7 @@ const Images = {
     settingOutline: require('~/assets/images/icons/setting_outline.png'),
     alignLeft: require('~/assets/images/icons/align_left.png'),
     emptyList: require('~/assets/images/icons/empty_list.png'),
+    loading: require('~/assets/images/icons/loading.png'),
   },
 };
 

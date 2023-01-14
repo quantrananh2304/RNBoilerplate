@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, RefreshControl, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { NoData, Text } from '~/components';
+import { Loading, NoData, Text } from '~/components';
 import { Colors, Metrics } from '~/themes';
 import { RootState } from '~/types/reduxs';
 import { useFocusEffect } from '@react-navigation/native';
@@ -18,7 +18,9 @@ export default function FakeStoreApiScreen({
 }: ScreenNavigationProps) {
   const i18t = useTranslation();
 
-  const { categories } = useSelector((state: RootState) => state.fakeStoreApi);
+  const { categories, fetching } = useSelector(
+    (state: RootState) => state.fakeStoreApi,
+  );
 
   const dispatch = useDispatch();
 
@@ -40,6 +42,8 @@ export default function FakeStoreApiScreen({
         padding: 10,
       }}
     >
+      <Loading visible={fetching} />
+
       <FlatList
         data={categories}
         keyExtractor={(item) => String(Math.random())}
