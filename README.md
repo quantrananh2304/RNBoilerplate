@@ -1,3 +1,4 @@
+# Node version: 16.15.1
 # How to setup environment:
 [Environment setup](https://reactnative.dev/docs/environment-setup)
 ## For mac M1:
