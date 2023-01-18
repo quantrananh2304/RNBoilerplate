@@ -7,11 +7,6 @@ export type CounterState = {
 
 export type CounterAction = AnyAction;
 
-export interface DispatchAction {
-  increment: () => void;
-  reset: () => void;
-}
-
 export interface CounterActionCreators extends DefaultActionCreators {
   increment: () => AnyAction;
   reset: () => AnyAction;
