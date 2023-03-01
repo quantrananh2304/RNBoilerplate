@@ -4,6 +4,7 @@ import { screenOption } from '../configs/routerStyles';
 import { Screen } from '~/types/navigation';
 import { HomeScreen, SettingScreen } from '~/screens';
 import { BackNav } from '~/components';
+import { Button } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,9 +14,20 @@ export default function StackHome() {
       <Stack.Screen
         name={Screen.Home}
         component={HomeScreen}
-        options={{
-          headerShown: false,
-        }}
+        options={({ navigation }) => ({
+          title: "Home Page",
+          headerShown: true,
+          headerLeft: () => {
+
+            function handleOpenDrawer() {
+              navigation.openDrawer();
+            }
+
+            return (
+              <Button title='Left' onPress={handleOpenDrawer} />
+            )
+          }
+        })}
       />
 
       <Stack.Screen

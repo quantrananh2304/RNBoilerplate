@@ -16,14 +16,14 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
     <View style={styles.container}>
       <SafeAreaView>
         <View style={styles.header}>
-          <TouchableOpacity onPress={handleOpenDrawer}>
+          {/* <TouchableOpacity onPress={handleOpenDrawer}>
             <FastImage
               source={Images.icons.alignLeft}
               style={ApplicationStyles.iconSize.default}
             />
           </TouchableOpacity>
 
-          <Text>Homepage</Text>
+          <Text>Homepage</Text> */}
 
           <View style={{ width: 24 }} />
         </View>
