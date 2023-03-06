@@ -1,0 +1,14 @@
+// https://github.com/microsoft/vscode-react-native
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Android Hermes",
+      "request": "launch",
+      "type": "reactnativedirect",
+      "cwd": "${workspaceFolder}",
+      "enableDebug": true,
+      "platform": "android"
+    }
+  ]
+}
