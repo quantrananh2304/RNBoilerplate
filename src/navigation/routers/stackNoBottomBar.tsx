@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { screenOption } from '../configs/routerStyles';
-import { Screen } from '~/types/navigation';
+import { Screen, ScreenRouteProps } from '~/types/navigation';
 import {
   SettingScreen,
   UserProfile,
@@ -11,7 +11,7 @@ import {
 } from '~/screens';
 import { BackNav } from '~/components';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<ScreenRouteProps>();
 
 export default function StackNoBottomBar() {
   return (
