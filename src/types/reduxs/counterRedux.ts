@@ -1,13 +1,13 @@
-import { AnyAction } from 'redux';
+import { BodyAction } from '.';
 import { DefaultActionCreators } from 'reduxsauce';
+import { AnyAction } from 'redux';
 
-export type CounterState = {
-  counter: number;
-};
-
-export type CounterAction = AnyAction;
+export type CounterState = number;
+export type CounterPayload = { value: CounterState } & AnyAction;
+export type CounterAction = BodyAction<CounterPayload, CounterState>;
 
 export interface CounterActionCreators extends DefaultActionCreators {
-  increment: () => AnyAction;
-  reset: () => AnyAction;
+  increment: (n: CounterState) => CounterPayload,
+  decrement: (n: CounterState) => CounterPayload,
+  set: (n: CounterState) => CounterPayload,
 }

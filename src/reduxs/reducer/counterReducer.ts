@@ -1,45 +1,36 @@
-import { DefaultActionTypes, createActions, createReducer } from 'reduxsauce';
+import { createActions, createReducer, DefaultActionTypes } from 'reduxsauce';
 import SeamlessImmutable from 'seamless-immutable';
-import { BodyAction } from '~/types/reduxs';
-import {
-  CounterAction,
-  CounterActionCreators,
-  CounterState,
-} from '~/types/reduxs/counterRedux';
+import { CounterAction, CounterActionCreators, CounterPayload, CounterState } from '~/types/reduxs/counterRedux';
 
-// =========== Create State ===========
+// =========== Initial State ===========
 
-const INITIAL_STATE = SeamlessImmutable<CounterState>({
-  counter: 0,
-});
+const INITIAL_STATE = SeamlessImmutable(0);
 
-// =========== Create Action ===========
-export interface CounterActionTypes extends DefaultActionTypes {
-  INCREMENT: 'INCREMENT';
+// =========== Action Types and Creators ===========
+
+interface CounterActionTypes extends DefaultActionTypes {
+  INCREMENT: 'counter/increment',
+  DECREMENT: 'counter/decrement',
+  SET: 'counter/set',
 }
 
-const { Types, Creators } = createActions<
+export const { Types, Creators } = createActions<
   CounterActionTypes,
   CounterActionCreators
 >({
-  increment: [''],
+  increment: ['value'],
+  decrement: ['value'],
+  set: ['value'],
 });
 
-export const CounterTypes = Types;
-
-export default Creators;
-
-const increment: BodyAction = (state) => {
-  return {
-    ...state,
-    counter: state.counter + 1,
-  };
-};
-
 // =========== Create Reducer ===========
-export const reducer = createReducer<CounterState, CounterAction>(
-  INITIAL_STATE,
-  {
-    [Types.INCREMENT]: increment,
-  },
-);
+
+const increment: CounterAction = (state, { value }) => state + value;
+const decrement: CounterAction = (state, { value }) => state - value;
+const set: CounterAction = (_, { value }) => value;
+
+export const CounterReducer = createReducer<CounterState, CounterPayload>(INITIAL_STATE, {
+  [Types.INCREMENT]: increment,
+  [Types.DECREMENT]: decrement,
+  [Types.SET]: set,
+});
