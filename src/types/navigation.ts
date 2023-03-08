@@ -20,21 +20,24 @@ export enum Screen {
   FakeStoreApi_AddProduct = 'FakeStoreApi_AddProduct',
 }
 
-type ScreenRouteProps = {
+export type ScreenRouteProps = {
+  [Screen.Home]: undefined;
+  [Screen.UserProfile]: undefined;
   [Screen.Settings]: undefined;
+  [Screen.FakeStoreApi]: undefined;
   [Screen.FakeStoreApi_AddProduct]: undefined;
   [Screen.FakeStoreApi_Products]: { category: string };
 };
 
 export type ScreenNavigationProps<
-  TScreen extends keyof ScreenProps = any,
+  TScreen extends keyof ScreenProps = string,
   ScreenProps extends ParamListBase = ScreenRouteProps,
 > = {
   navigation: NativeStackNavigationProp<ScreenProps, TScreen>;
 };
 
 export type ScreenPropsWithRoute<
-  TScreen extends keyof ScreenProps = any,
+  TScreen extends keyof ScreenProps = string,
   ScreenProps extends ParamListBase = ScreenRouteProps,
 > = {
   route: RouteProp<ScreenProps, TScreen>;
